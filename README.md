@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # 🎵 MusicProc
 
 **ماژول پردازش صدا با کیفیت Production-Grade برای Go**
@@ -88,6 +90,8 @@ go get github.com/Skryldev/audio-lab
 
 ## شروع سریع
 
+<div dir="ltr">
+
 ```go
 package main
 
@@ -123,12 +127,15 @@ func main() {
     fmt.Printf("✅ Done! Duration: %s\n", result.Duration)
 }
 ```
+<div dir="rtl">
 
 ---
 
 ## راهنمای کامل API
 
 ### ساخت Processor
+
+<div dir="ltr">
 
 ```go
 processor, err := musicproc.New(musicproc.Config{
@@ -154,8 +161,11 @@ processor, err := musicproc.New(musicproc.Config{
     },
 })
 ```
+<div dir="rtl">
 
 ### ProcessAudio — پردازش تک فایل
+
+<div dir="ltr">
 
 ```go
 result, err := processor.ProcessAudio(ctx, inputPath, outputPath,
@@ -177,8 +187,11 @@ result, err := processor.ProcessAudio(ctx, inputPath, outputPath,
     musicproc.WithWorkers(4),
 )
 ```
+<div dir="rtl">
 
 **خروجی ProcessingResult:**
+
+<div dir="ltr">
 
 ```go
 type ProcessingResult struct {
@@ -190,8 +203,11 @@ type ProcessingResult struct {
     ProcessedAt  time.Time        // زمان پردازش
 }
 ```
+<div dir="rtl">
 
 ### ProcessBatch — پردازش دسته‌ای
+
+<div dir="ltr">
 
 ```go
 jobs := []musicproc.BatchJob{
@@ -228,8 +244,11 @@ for res := range resultsCh {
     fmt.Printf("✅ [%s] completed in %s\n", res.JobID, res.Result.Duration)
 }
 ```
+<div dir="rtl">
 
 ### ProbeAudio — خواندن متادیتا
+
+<div dir="ltr">
 
 ```go
 meta, err := processor.ProbeAudio(ctx, "audio.wav")
@@ -245,12 +264,15 @@ fmt.Printf("Bitrate   : %d bps\n", meta.Bitrate)
 fmt.Printf("Format    : %s\n", meta.Format)
 fmt.Printf("Size      : %d bytes\n", meta.Size)
 ```
+<div dir="rtl">
 
 ---
 
 ## مثال‌های کاربردی
 
 ### مثال ۱: آپلود و پردازش برای پلتفرم استریم
+
+<div dir="ltr">
 
 ```go
 // استاندارد Spotify: -14 LUFS، Opus 160kbps
@@ -265,8 +287,11 @@ result, err := processor.ProcessAudio(ctx,
     musicproc.WithHighpass(80),
 )
 ```
+<div dir="rtl">
 
 ### مثال ۲: پردازش با timeout و graceful shutdown
+
+<div dir="ltr">
 
 ```go
 func processWithGracefulShutdown(inputPath, outputPath string) error {
@@ -292,8 +317,11 @@ func processWithGracefulShutdown(inputPath, outputPath string) error {
     return err
 }
 ```
+<div dir="rtl">
 
 ### مثال ۳: Progress tracking در real-time
+
+<div dir="ltr">
 
 ```go
 progressCh := make(chan musicproc.ProgressUpdate, 64)
@@ -318,8 +346,11 @@ result, err := processor.ProcessAudio(ctx, "input.wav", "output.opus",
     musicproc.WithNormalization(true),
 )
 ```
+<div dir="rtl">
 
 ### مثال ۴: Batch processing با custom options
+
+<div dir="ltr">
 
 ```go
 // پردازش یک آلبوم کامل
@@ -356,8 +387,11 @@ go func() {
 
 wg.Wait()
 ```
+<div dir="rtl">
 
 ### مثال ۵: استفاده با logger سفارشی
+
+<div dir="ltr">
 
 ```go
 import "go.uber.org/zap"
@@ -371,10 +405,13 @@ processor, _ := musicproc.New(musicproc.Config{
 })
 defer processor.Close()
 ```
+<div dir="rtl">
 
 ---
 
 ## مدیریت خطا
+
+<div dir="ltr">
 
 ```go
 import (
@@ -417,6 +454,7 @@ if err != nil {
     }
 }
 ```
+<div dir="rtl">
 
 ---
 
@@ -454,6 +492,8 @@ if err != nil {
 
 ### Graceful Shutdown
 
+<div dir="ltr">
+
 ```go
 processor, _ := musicproc.New(musicproc.Config{Workers: 4})
 
@@ -477,6 +517,7 @@ for res := range resultsCh {
 
 processor.Close()
 ```
+<div dir="rtl">
 
 ### Resource Management
 
@@ -485,6 +526,8 @@ processor.Close()
 - context cancellation در تمام لایه‌ها منتشر می‌شود
 
 ### Observability
+
+<div dir="ltr">
 
 ```go
 // اضافه کردن logger سفارشی با fields محیطی
@@ -498,6 +541,7 @@ processor, _ := musicproc.New(musicproc.Config{
     ZapLogger: zapLogger,
 })
 ```
+<div dir="rtl">
 
 ### امنیت
 
